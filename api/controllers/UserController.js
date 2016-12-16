@@ -15,7 +15,8 @@ module.exports = {
           if (err) {
             console.log(err);
           } else {
-            console.log('Log in successful');
+            console.log('login successful');
+            res.redirect('/');
           }
         })
     }) (req, res, next);
@@ -25,6 +26,7 @@ module.exports = {
     passport.authenticate('facebook',
       function (req, res) {
         console.log('callbacked');
+        res.redirect('/');
       }) (req, res, next);
   }
 };
