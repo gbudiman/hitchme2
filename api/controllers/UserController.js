@@ -8,27 +8,23 @@
 var passport = require('passport');
 
 module.exports = {
-  login: function (req, res) {
-    res.view();
-  },
-
-  'facebook': function(req, res, next) {
-    passport.authenticate('facebook', { scope: ['id', 'email', 'displayName', 'link'] },
+  'auth/facebook': function(req, res, next) {
+    passport.authenticate('facebook',
       function (err, user) {
         req.logIn(user, function (err) {
           if (err) {
             console.log(err);
           } else {
-
+            console.log('Log in successful');
           }
         })
     }) (req, res, next);
   },
 
-  'facebook/callback': function(req, res, next) {
+  'auth/facebook/callback': function(req, res, next) {
     passport.authenticate('facebook',
       function (req, res) {
-
+        console.log('callbacked');
       }) (req, res, next);
   }
 };
